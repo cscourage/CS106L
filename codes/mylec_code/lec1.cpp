@@ -1,3 +1,8 @@
+/** The lec1.cpp is for lecture introduction.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <vector>
 #include <numeric>

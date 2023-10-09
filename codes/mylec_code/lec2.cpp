@@ -1,3 +1,8 @@
+/** The lec2.cpp is for lecture streams and types.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>  // for cin,cout
 #include <sstream>   // for stringstream
 #include <iomanip>   // for manipulators

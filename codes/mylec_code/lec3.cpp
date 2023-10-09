@@ -1,3 +1,8 @@
+/** The lec3.cpp is for lecture stl containers and iterators.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <vector>
 #include <cstdlib>     // for rand
 #include <iostream>    // for cout
@@ -7,6 +12,7 @@
 #include <map>
 #include <sstream>
 #include <set>
+#include <utility>
 
 using std::vector;    using std::string;    using std::set;    using std::map;
 using std::cout;    using std::endl;    using std::cin;
@@ -28,6 +34,15 @@ void doBubbleSort(vector<int>& v) {
 
 
 void printVec(const vector<string>& v) {
+    cout << "{";
+    for (auto elem : v) {
+        cout << elem << " ";
+    }
+    cout << "}" << endl;
+}
+
+
+void printVec(const vector<int>& v) {
     cout << "{";
     for (auto elem : v) {
         cout << elem << " ";
@@ -65,14 +80,6 @@ void mapIterator(map<int, int> m) {
 }
 
 
-void printVec(const vector<int>& vec) {
-    for (auto elem : vec) {
-        cout << elem << " ";
-    }
-    cout << endl;
-}
-
-
 // int main() {
 //     vector<int> vec(kNumInts);
 //     // Generate N random numbers
@@ -103,8 +110,19 @@ void printVec(const vector<int>& vec) {
 //     printVec(names);
 
 //     // names.at(2) will inhint you errors but names[2] will not.
+//     // 即和string一样，[]操作没有越界检查，但是at()函数有，且at()也是返回引用.
 //     cout << names[2] << endl;
 //     cout << "I arrive here!" << endl;
+//     return 0;
+// }
+
+
+// int main() {
+//     map<int, int> m;
+//     m.insert({3, 5});
+//     m.insert(std::make_pair(6, 10));
+//     mapIterator(m);
+
 //     return 0;
 // }
 
@@ -122,7 +140,7 @@ void printVec(const vector<int>& vec) {
 //         std::istringstream stream(response);
 //         string word;
 //         while (stream >> word) {
-//             //frequencyMap[word]; // automatically create an entry and default initialize it.
+//             //frequencyMap[word]; // automatically creates an entry and by default initializes it.
 //             //frequencyMap.at(word);     // throw an error.
 //             frequencyMap[word]++;
 //         }
@@ -176,3 +194,12 @@ int main() {
 
     return 0;
 }
+
+
+/** Lastly, introduce five different types of iterators:
+ *  1. Input: Read only i.e. can only be dereferenced on right side of expression.
+ *  2. Output: Write only i.e. can only be dereferenced on left side of expression.
+ *  3. Forward: Combines input and output iterators, + can make multiple passes.
+ *  4. Bidirectional: Same as forward iterators, + can go backwards with the decrement operator (--).
+ *  5. Random access: Same as bidirectional iterators, + can be incremented or decremented by arbitrary amounts using + and -.
+*/
