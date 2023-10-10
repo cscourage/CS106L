@@ -173,8 +173,10 @@ int main() {
     // erase_all_efficient(v, 1);
     // mapErase(m, 15);
 
-    // container.erase和std::remove一起连用，因为std::remove不是container的成员函数，它
+    // std::erase(c++20引入)和std::remove一起连用，因为std::remove不是container的成员函数，它
     // 把指定的元素discard之后不能将container的大小缩小，所以还需要调用erase.
+    // *many containers will define their own erase function which does this for you - 
+    // this only applies if you use the STL erase/remove algorithms.
     v.erase(remove(v.begin(), v.end(), 1), v.end());
     for (auto elem : v) {
         cout << elem << " ";

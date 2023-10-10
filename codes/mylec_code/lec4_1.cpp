@@ -1,3 +1,8 @@
+/** The lec4_1.cpp is for lecture stl wrapping-up.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
