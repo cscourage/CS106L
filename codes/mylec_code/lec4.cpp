@@ -1,3 +1,8 @@
+/** The lec4.cpp is for lecture templates, stl functions and algorithms.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <list>
 #include <deque>
@@ -32,6 +37,11 @@ void printMinAndMax(T min, T max) {
 }
 
 
+/** 1. iterator to erasure point always invalidated.
+ *  2. vector: all iterators after erasure point invalidated.
+ *  3. deque: all iterators invalidated (unless erasure point was front or back).
+ *  4. list/set/map: all other iterators are still valid.
+*/
 template<typename T>
 void eraseContainerDemo(T& container) {
     auto iter = container.begin();
@@ -86,6 +96,8 @@ void mapErase(T& mymap, U key) {
 
 // the above two will be slow, cause after erasing all following items will be forwarded.
 // let's try another efficient way.
+// 因为vector使用erase固有的性能缺陷，所以这里不使用erase了，而是使用类似双指针的解法来优化性能.
+// similar to the std::remove_if.
 template<typename T, typename U>
 void erase_all_efficient(T& container, U val) {
     auto first = container.begin();
@@ -117,7 +129,9 @@ pair<InputIt1, InputIt2> mymismatch(InputIt1 first1, InputIt1 last1, InputIt2 fi
 }
 
 
-// like a higher-order function.
+// concept-lifting 2.
+// a predicate is a function which takes in some number of arguments and returns a boolean.
+// The following seems like a higher-order function.
 template<typename InputIterator, typename UniPred>
 int countOccurences(InputIterator begin, InputIterator end, UniPred predicate) {
     int count = 0;
@@ -141,7 +155,7 @@ int main() {
     //auto [min, max] = my_minmax(9, 5);
     //my_minmax("Anna", "Avery");   // this will deduce that is a c-string, i.e. char*
     //not the string in c++. so remeber that type deduction can't read your mind. So we
-    //hould explictly assign it. For example, my_minmax<string>("Anna", "Avery").
+    //should explictly assign it. For example, my_minmax<string>("Anna", "Avery").
     //printMinAndMax(min, max);
 
     list<int> l{3, 1, 4, 1, 5, 2, 6};
@@ -159,6 +173,8 @@ int main() {
     // erase_all_efficient(v, 1);
     // mapErase(m, 15);
 
+    // container.erase和std::remove一起连用，因为std::remove不是container的成员函数，它
+    // 把指定的元素discard之后不能将container的大小缩小，所以还需要调用erase.
     v.erase(remove(v.begin(), v.end(), 1), v.end());
     for (auto elem : v) {
         cout << elem << " ";
@@ -176,12 +192,17 @@ int main() {
     // int limit = 5;
     // int num_times_called = 0;
     // // lambda function.
+    // // in the capture group you can pass both values and references.
     // auto isLessThanLimit = [limit, &num_times_called](auto val) -> bool {
     //     ++num_times_called;
     //     return val < limit;
     // };
     // cout << countOccurences(v.begin(), v.end(), isLessThanLimit) << endl;
     // cout << "call the predicate " << num_times_called << " times." << endl;
+
+    // 上面的countOccurences还有一种解决方案，就是使用std::bind()，
+    // it takes a functor and returns a functor. For example, there yoo can use
+    // "std::bind(islessThanLimit, _1, limit)"来解决.
 
     // the following data is only invented by me.
     vector<Course> courses{{"cs61a", 2352}, {"cs61b", 2248}, {"cs61c", 792}, {"MIT6.NULL", 100},
@@ -197,6 +218,8 @@ int main() {
 
     // cout << "the course is " << median.name << ", and its rating is " << median.rating << endl;
 
+    // 其实就是找到第k小元素，此算法利用了快速排序的思想，不过是部分排序
+    // ppt这里有点问题，nth_element返回值应该是void.
     nth_element(courses.begin(), courses.begin() + size / 2, courses.end(), compareRating);
     cout << "the median is " << courses[size / 2].name << " and its rating is " << courses[size / 2].rating << endl;
 
@@ -210,6 +233,7 @@ int main() {
     // cout << "the iter point to " << (*iter).name << ", its rating is " << (*iter).rating << endl;
 
     vector<Course> csCourses;
+    // use back_inserter to dynamically add elements and don't need to verify the length from before.
     copy_if(courses.begin(), courses.end(), back_inserter(csCourses), isDep);
     printCourses(csCourses);
 
