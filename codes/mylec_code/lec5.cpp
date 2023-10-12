@@ -1,3 +1,8 @@
+/** The lec5.cpp is for namespace.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -30,6 +35,8 @@ int main() {
     cout << "manual count: " << count << endl;
 
     // billion lines later...
+    // 现实中就是在很久之后忘了或者接手别人的代码时不知道有没有定义过一些比较common的函数，
+    // 用namespace的话就可以显示避免这类问题.
 
     cout << "lecture count: " << Lecture::count(v) << endl;
 

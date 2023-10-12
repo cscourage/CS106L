@@ -1,3 +1,8 @@
+/** The lec5.cpp is for lecture class inheritance.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
