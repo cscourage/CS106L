@@ -1,7 +1,12 @@
+/** The lec5.cpp is for lecture class design, operator overloading, special members 
+ *  , move semantics and RAII.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 /** Note: for simplicity, we've removed the iterator class, and instead
  * used a simple pointer. For the GapBuffer, the iterator class needs to be implemented!
  */
-
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -13,7 +18,7 @@ class MyVector {
 public:
     using value_type = T;
     using iterator = value_type*;
-    using const_iterator = value_type*;
+    using const_iterator = value_type * const;  // const pointer to a non-constant value.
     using size_type = size_t;
 
     const size_type kInitialSize = 10;
