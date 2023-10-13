@@ -6,6 +6,7 @@
  * use std::thread and std::mutex. The solution is add some header file which pulled from
  * github and place it into path:D:\mingw64\lib\gcc\x86_64-w64-mingw32\8.1.0\include\c++.
  */
+// 这里的mingw.thread.h需自行在网上搜索找到对应的github仓库并将其导入到相应路径以解决问题
 #include <mingw.thread.h>
 #include <mingw.mutex.h>
 
@@ -16,7 +17,7 @@ const size_t kNumThreads = 10;
 std::mutex mtx;
 
 void greet(int id) {
-    std::lock_guard<std::mutex> lg(mtx); 
+    std::lock_guard<std::mutex> lg(mtx);    // RAII.
     cout << "Hello there: My name is " << id << endl;
 }
 
@@ -37,6 +38,7 @@ int main() {
     }
 
     //note there needs to use & in order to prevent copying which results new creation.
+    //这里是按顺序回收.
     for (std::thread& t : threads) {
         t.join();
     }
