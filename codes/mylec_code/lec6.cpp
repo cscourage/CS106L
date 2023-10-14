@@ -1,3 +1,8 @@
+/** The lec6.cpp is for lecture multithreading.
+ *  @author:cscourage
+ *  @url:https://github.com/cscourage/CS106L
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -36,6 +41,9 @@ int main() {
         threads.push_back(std::thread(greet, i));
         //can not add thread[i].join(), it will make it serial.
     }
+
+    // 注意如果这里加上一个cout，因为这里没有互斥锁资源，所以也有race condition.
+    //cout << "Hello from main threads" << endl;
 
     //note there needs to use & in order to prevent copying which results new creation.
     //这里是按顺序回收.
