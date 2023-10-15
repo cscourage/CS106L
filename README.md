@@ -18,3 +18,8 @@ c + cin、cout的人来说，这绝对是一个极佳的学习现代c++的机会
 课程网站：https://web.stanford.edu/class/archive/cs/cs106l/cs106l.1204/lectures.html
 
 讲座视频：https://www.bilibili.com/video/BV1K8411b7AU/?spm_id_from=333.337.search-card.all.click
+
+## 鸣谢
+感谢Avery Wang和Anna Zeng的精彩授课，让我深刻地了解到了一些在学校肯定不会系统性学到的modern c++知识，也感谢Stanford的开源精神，能够让世界各地的人能够接触到如此优秀的教育资源！！！
+
+同时，如果本仓库对您有帮助，还恳请能够给我点上一颗小小的star，这也是对我最大的肯定！！！
